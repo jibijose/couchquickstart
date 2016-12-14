@@ -1,0 +1,12 @@
+target
+.project
+.settings
+.classpath
+config/output
+config/*
+.pmd
+.pmdruleset.xml
+.vagrant
+
+.gradle
+build
