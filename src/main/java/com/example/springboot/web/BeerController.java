@@ -11,12 +11,12 @@ import com.example.springboot.service.BeerService;
 @Controller
 public class BeerController {
 
-    @Autowired
-    private BeerService beerService;
+  @Autowired
+  private BeerService beerService;
 
-    @RequestMapping("/beer")
-    @ResponseBody
-    public ModelAndView index() {
-        return new ModelAndView("beer/index", "beers", beerService.allBeers());
-    }
+  @RequestMapping("/beer")
+  @ResponseBody
+  public ModelAndView index() {
+    return new ModelAndView("beer/index", "beers", beerService.allBeers());
+  }
 }

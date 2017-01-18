@@ -22,24 +22,24 @@ import com.example.springboot.service.BeerService;
 @RunWith(MockitoJUnitRunner.class)
 public class BeerControllerTest {
 
-	private MockMvc mvc;
-	
-	@Mock
-	private BeerService beerService;
-	
-	@InjectMocks
-	private BeerController beerController;
+  private MockMvc mvc;
 
-	@Before
-	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
-		mvc = MockMvcBuilders.standaloneSetup(beerController).build();
-	}
+  @Mock
+  private BeerService beerService;
 
-	@Test
-	public void getBeers() throws Exception {
-		when(beerService.allBeers()).thenReturn(new ArrayList<Beer>());
-		
-		mvc.perform(MockMvcRequestBuilders.get("/beer")).andExpect(status().isOk());
-	}
+  @InjectMocks
+  private BeerController beerController;
+
+  @Before
+  public void setUp() throws Exception {
+    MockitoAnnotations.initMocks(this);
+    mvc = MockMvcBuilders.standaloneSetup(beerController).build();
+  }
+
+  @Test
+  public void getBeers() throws Exception {
+    when(beerService.allBeers()).thenReturn(new ArrayList<Beer>());
+
+    mvc.perform(MockMvcRequestBuilders.get("/beer")).andExpect(status().isOk());
+  }
 }

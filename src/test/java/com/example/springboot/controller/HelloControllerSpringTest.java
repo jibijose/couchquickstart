@@ -13,11 +13,11 @@ import com.example.springboot.service.SystemNameService;
 @SpringApplicationConfiguration(classes = {MockConfig.class})
 public class HelloControllerSpringTest {
 
-	@Autowired
-	SystemNameService systemNameService;
-	
-	@Test
-	public void checkAop() {
-		systemNameService.getSystemName();
-	}
+  @Autowired
+  SystemNameService systemNameService;
+
+  @Test
+  public void checkAop() {
+    systemNameService.getSystemName();
+  }
 }

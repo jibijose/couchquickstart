@@ -40,7 +40,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
-		
+
 
 
 		<!-- Spring AOP + AspectJ -->

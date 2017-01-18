@@ -17,21 +17,21 @@ import org.powermock.api.mockito.PowerMockito;
 @PrepareForTest(MathUtil.class)
 public class CalculatorTest {
 
-	private Calculator calc;
+  private Calculator calc;
 
-	@Before
-	public void setUp() {
-		calc = new Calculator();
+  @Before
+  public void setUp() {
+    calc = new Calculator();
 
-		PowerMockito.mockStatic(MathUtil.class);
-		PowerMockito.when(MathUtil.addInteger(1, 1)).thenReturn(0);
-		PowerMockito.when(MathUtil.addInteger(2, 2)).thenReturn(1);
-	}
+    PowerMockito.mockStatic(MathUtil.class);
+    PowerMockito.when(MathUtil.addInteger(1, 1)).thenReturn(0);
+    PowerMockito.when(MathUtil.addInteger(2, 2)).thenReturn(1);
+  }
 
-	@Test
-	public void shouldCalculateInAStrangeWay() {
-		assertEquals(0, calc.add(1, 1));
-		assertEquals(1, calc.add(2, 2));
-	}
+  @Test
+  public void shouldCalculateInAStrangeWay() {
+    assertEquals(0, calc.add(1, 1));
+    assertEquals(1, calc.add(2, 2));
+  }
 
 }

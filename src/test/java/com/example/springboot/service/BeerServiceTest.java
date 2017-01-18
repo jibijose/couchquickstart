@@ -16,18 +16,18 @@ import com.example.springboot.domain.Beer;
 @SpringApplicationConfiguration(classes = {MockConfig.class})
 public class BeerServiceTest {
 
-	@Autowired
-	BeerService beerService;
-	
-	@Test
-	public void checkBeerAllBeers() {
-		List<Beer> beers = beerService.allBeers();
-		assertNotNull(beers);
-	}
-	
-	@Test
-	public void checkBeerAllBeersLimit() {
-		List<Beer> beers = beerService.allBeers(10);
-		assertEquals(3, beers.size());
-	}
+  @Autowired
+  BeerService beerService;
+
+  @Test
+  public void checkBeerAllBeers() {
+    List<Beer> beers = beerService.allBeers();
+    assertNotNull(beers);
+  }
+
+  @Test
+  public void checkBeerAllBeersLimit() {
+    List<Beer> beers = beerService.allBeers(10);
+    assertEquals(3, beers.size());
+  }
 }
