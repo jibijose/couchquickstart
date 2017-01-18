@@ -7,7 +7,7 @@ import com.couchbase.client.java.repository.annotation.Field;
 
 @Document
 public class Beer {
-  
+
   @Id
   private String id;
 
