@@ -11,10 +11,7 @@ import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepos
 @EnableCouchbaseRepositories()
 public class CouchConfig extends AbstractCouchbaseConfiguration {
 
-  @Override
-  protected List<String> bootstrapHosts() {
-    return Collections.singletonList("127.0.0.1");
-  }
+
 
   @Override
   protected String getBucketName() {
@@ -24,6 +21,11 @@ public class CouchConfig extends AbstractCouchbaseConfiguration {
   @Override
   protected String getBucketPassword() {
     return "";
+  }
+
+  @Override
+  protected List<String> getBootstrapHosts() {
+    return Collections.singletonList("127.0.0.1");
   }
 
 }

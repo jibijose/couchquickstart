@@ -1,13 +1,20 @@
 package com.example.springboot.repository;
 
-import com.couchbase.client.protocol.views.Query;
 import com.example.springboot.domain.Beer;
 
+import static com.couchbase.client.java.query.Select.select;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.couchbase.core.CouchbaseTemplate;
 import org.springframework.stereotype.Component;
+
+import com.couchbase.client.java.document.json.JsonObject;
+import com.couchbase.client.java.query.N1qlQuery;
+import com.couchbase.client.java.query.Statement;
 
 @Component
 public class CouchTemplateBeerRepository implements BeerRepository {
@@ -82,9 +89,13 @@ public class CouchTemplateBeerRepository implements BeerRepository {
   }
 
   @Override
-  public List<Beer> all(Query query) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Beer> all() {
+    Statement statement = select("name", "abv", "brewery_id", "description").from("beer-sample");
+    JsonObject parameters = JsonObject.create();
+    N1qlQuery n1qlQuery = N1qlQuery.parameterized(statement, parameters);
+    Collection<Beer> resultsBeers = couchbaseTemplate.findByN1QL(n1qlQuery, Beer.class);
+    
+    return new ArrayList<>(resultsBeers);
   }
 
 }

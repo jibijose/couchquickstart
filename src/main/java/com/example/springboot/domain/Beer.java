@@ -1,7 +1,8 @@
 package com.example.springboot.domain;
 
 import org.springframework.data.couchbase.core.mapping.Document;
-import org.springframework.data.couchbase.core.mapping.Field;
+
+import com.couchbase.client.java.repository.annotation.Field;
 
 @Document
 public class Beer {
