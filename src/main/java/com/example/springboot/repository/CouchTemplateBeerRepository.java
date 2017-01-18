@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.couchbase.client.java.document.json.JsonObject;
 import com.couchbase.client.java.query.N1qlQuery;
 import com.couchbase.client.java.query.Statement;
+import com.couchbase.client.java.query.dsl.Expression;
 
 @Component
 public class CouchTemplateBeerRepository implements BeerRepository {
@@ -36,8 +37,13 @@ public class CouchTemplateBeerRepository implements BeerRepository {
 
   @Override
   public Beer findOne(String id) {
-    // TODO Auto-generated method stub
-    return null;
+    //Statement statement = select("name", "abv", "brewery_id", "description").from("`beer-sample`").where(Expression.x("meta().id").eq(id));
+    Statement statement = select("meta().id as _ID, meta().cas as _CAS, name, abv, brewery_id, description").from("`beer-sample`");
+    JsonObject parameters = JsonObject.create();
+    N1qlQuery n1qlQuery = N1qlQuery.parameterized(statement, parameters);
+    Collection<Beer> resultsBeers = couchbaseTemplate.findByN1QL(n1qlQuery, Beer.class);
+
+    return (resultsBeers.size() > 0 ? resultsBeers.iterator().next() : null);
   }
 
   @Override
@@ -67,35 +73,25 @@ public class CouchTemplateBeerRepository implements BeerRepository {
   @Override
   public void delete(String id) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void delete(Beer entity) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void delete(Iterable<? extends Beer> entities) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void deleteAll() {
     // TODO Auto-generated method stub
-    
-  }
 
-  @Override
-  public List<Beer> all() {
-    Statement statement = select("name", "abv", "brewery_id", "description").from("beer-sample");
-    JsonObject parameters = JsonObject.create();
-    N1qlQuery n1qlQuery = N1qlQuery.parameterized(statement, parameters);
-    Collection<Beer> resultsBeers = couchbaseTemplate.findByN1QL(n1qlQuery, Beer.class);
-    
-    return new ArrayList<>(resultsBeers);
   }
 
 }

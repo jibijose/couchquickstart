@@ -1,11 +1,15 @@
 package com.example.springboot.domain;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 
 import com.couchbase.client.java.repository.annotation.Field;
 
 @Document
 public class Beer {
+  
+  @Id
+  private String id;
 
   @Field
   private String name;
