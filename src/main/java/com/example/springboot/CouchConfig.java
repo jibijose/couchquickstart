@@ -26,14 +26,4 @@ public class CouchConfig extends AbstractCouchbaseConfiguration {
 		return "";
 	}
 
-//	@Bean
-//	public LocalValidatorFactoryBean validator() {
-//		return new LocalValidatorFactoryBean();
-//	}
-//
-//	@Bean
-//	public ValidatingCouchbaseEventListener validationEventListener() {
-//		return new ValidatingCouchbaseEventListener(validator());
-//	}
-
 }
