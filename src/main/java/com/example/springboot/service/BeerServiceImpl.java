@@ -21,7 +21,8 @@ public class BeerServiceImpl implements BeerService {
 
   @Override
   public List<Beer> allBeers() {
-    Beer beer = beerRepository.findOne("abbaye_de_maredsous-8");
+    //Beer beer = beerRepository.findOne("abbaye_de_maredsous-8");
+    Beer beer = beerRepository.findOne("8");
     return Collections.singletonList(beer);
   }
 

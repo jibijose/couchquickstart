@@ -37,8 +37,7 @@ public class CouchTemplateBeerRepository implements BeerRepository {
 
   @Override
   public Beer findOne(String id) {
-    //Statement statement = select("name", "abv", "brewery_id", "description").from("`beer-sample`").where(Expression.x("meta().id").eq(id));
-    Statement statement = select("meta().id as _ID, meta().cas as _CAS, name, abv, brewery_id, description").from("`beer-sample`");
+    Statement statement = select("meta().id as _ID, meta().cas as _CAS, name, abv, brewery_id, description").from("`beer-sample`").where(Expression.x("name").eq(Expression.s(id)));
     JsonObject parameters = JsonObject.create();
     N1qlQuery n1qlQuery = N1qlQuery.parameterized(statement, parameters);
     Collection<Beer> resultsBeers = couchbaseTemplate.findByN1QL(n1qlQuery, Beer.class);
